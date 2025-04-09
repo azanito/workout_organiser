@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';  // Импортируем HomeScreen
+import 'about_page.dart';   // Импортируем AboutPage
 
 void main() {
-  runApp(const WorkoutOrganiserApp());
+  runApp(WorkoutOrganiserApp());
 }
 
 class WorkoutOrganiserApp extends StatelessWidget {
-  const WorkoutOrganiserApp({super.key});
+  WorkoutOrganiserApp({super.key});  // Убираем 'const' из конструктора
 
   @override
   Widget build(BuildContext context) {
@@ -16,76 +18,51 @@ class WorkoutOrganiserApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
-      home: const AboutPage(),
+      home: SplashScreen(),  // Устанавливаем SplashScreen как начальную страницу
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
-
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F2),
       appBar: AppBar(
+        title: const Text("Workout Organiser"),
         backgroundColor: Colors.green.shade600,
-        foregroundColor: Colors.white,
-        title: const Text(
-          'About Workout Organiser',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+      body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _sectionTitle('🏋️ App Description'),
-            const SizedBox(height: 10),
-            _descriptionCard(
-              'Workout Organiser is a mobile app designed to help users stay consistent with their fitness goals. '
-              'It allows users to create custom workout plans, track progress, set daily or weekly goals, and get reminders.',
+            const Text(
+              "Welcome to Workout Organizer!",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
-            _sectionTitle('👨‍💻 Credits'),
-            const SizedBox(height: 10),
-            _descriptionCard(
-              'Developed by Orunbek Azan, Zhetkizgen Nurgissa, Aibolat Urzhin in the scope of the course '
-              '“Crossplatform Development” at Astana IT University.\n\n'
-              'Mentor (Teacher): Assistant Professor Abzal Kyzyrkanov',
+            ElevatedButton(
+              onPressed: () {
+                // Переход на HomeScreen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+              child: const Text("Go to Home"),
             ),
-            const SizedBox(height: 30),
-            _sectionTitle('📱 Version'),
-            const SizedBox(height: 10),
-            _descriptionCard('Version 1.0.0 – Initial About Page'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Переход на AboutPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutPage()), // Используем AboutPage
+                );
+              },
+              child: const Text("About Us"),
+            ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _sectionTitle(String title) {
-    return Text(
-      title,
-      style: const TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
-    );
-  }
-
-  Widget _descriptionCard(String content) {
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          content,
-          style: const TextStyle(fontSize: 16, height: 1.5),
         ),
       ),
     );
