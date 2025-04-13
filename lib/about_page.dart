@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});  // Используем 'const' для неизменяемых классов
+  const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F2),
+      // Используем тему по умолчанию для поддержки темной/светлой темы
       appBar: AppBar(
         backgroundColor: Colors.green.shade600,
         foregroundColor: Colors.white,
@@ -20,50 +20,51 @@ class AboutPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _sectionTitle('🏋️ App Description'),
+            _sectionTitle('🏋️ App Description', context),
             const SizedBox(height: 10),
             _descriptionCard(
+              context,
               'Workout Organiser is a mobile app designed to help users stay consistent with their fitness goals. '
               'It allows users to create custom workout plans, track progress, set daily or weekly goals, and get reminders.',
             ),
             const SizedBox(height: 30),
-            _sectionTitle('👨‍💻 Credits'),
+            _sectionTitle('👨‍💻 Credits', context),
             const SizedBox(height: 10),
             _descriptionCard(
+              context,
               'Developed by Orunbek Azan, Zhetkizgen Nurgissa, Aibolat Urzhin in the scope of the course '
               '“Crossplatform Development” at Astana IT University.\n\n'
               'Mentor (Teacher): Assistant Professor Abzal Kyzyrkanov',
             ),
             const SizedBox(height: 30),
-            _sectionTitle('📱 Version'),
+            _sectionTitle('📱 Version', context),
             const SizedBox(height: 10),
-            _descriptionCard('Version 1.0.0 – Initial About Page'),
+            _descriptionCard(context, 'Version 1.4 – Updated for Assignment 4'),
           ],
         ),
       ),
     );
   }
 
-  Widget _sectionTitle(String title) {
+  Widget _sectionTitle(String title, BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
     );
   }
 
-  Widget _descriptionCard(String content) {
+  Widget _descriptionCard(BuildContext context, String content) {
     return Card(
       elevation: 3,
+      color: Theme.of(context).cardColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Text(
           content,
-          style: const TextStyle(fontSize: 16, height: 1.5),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.5),
         ),
       ),
     );
