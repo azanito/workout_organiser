@@ -1,6 +1,39 @@
 {
   "@@locale": "en",
-  "workouts": "Workouts",
-  "progress": "Progress",
-  "profile": "Profile"
+
+  "appTitle": "Workout Organiser",
+  "workouts" : "Workouts",
+  "progress" : "Progress",
+  "profile"  : "Profile",
+  "about"    : "About",
+  "settings" : "Settings",
+
+
+  "theme"    : "Theme",
+  "language" : "Language",
+  "system"   : "System",
+  "light"    : "Light",
+  "dark"     : "Dark",
+
+
+  "addWorkout" : "Add workout",
+  "editWorkout": "Edit workout",
+  "title"      : "Title",
+  "description": "Description",
+  "cancel"     : "Cancel",
+  "update"     : "Update",
+  "add"        : "Add",
+  "close"      : "Close",
+  "noWorkouts" : "No workouts yet. Add one!",
+
+  "trackProgress": "Track your workout progress here!",
+  "yourProfile"  : "Your Profile",
+
+
+  "aboutTitle"       : "About Workout Organiser",
+  "aboutDescription" : "Workout Organiser is a mobile app designed to help users stay consistent with their fitness goals. It allows users to create custom workout plans, track progress, set daily or weekly goals, and get reminders.",
+  "credits"          : "Credits",
+  "aboutCredits"     : "Developed by Orunbek Azan, Zhetkizgen Nurgissa, Aibolat Urzhin in the scope of the course “Cross‑platform Development” at Astana IT University.\n\nMentor: Assistant Professor Abzal Kyzyrkanov",
+  "version"          : "Version",
+  "versionNumber"    : "Version 1.6 – Updated for Assignment 6"
 }

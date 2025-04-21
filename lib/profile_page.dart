@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'about_page.dart'; // Импорт AboutPage
+import 'l10n/s.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -8,8 +8,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
-        backgroundColor: Colors.green.shade600,
+        title: Text(S.of(context)?.profile ?? 'Profile'),
       ),
       body: Center(
         child: Column(
@@ -17,23 +16,24 @@ class ProfilePage extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/avatar.png'), // Замените или уберите при необходимости
+              backgroundImage: AssetImage('assets/avatar.png'),
             ),
             const SizedBox(height: 16),
-            const Text(
-              "Your Profile",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            Text(
+              S.of(context)?.yourProfile ?? 'Your Profile',
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AboutPage()),
-                );
+                Navigator.pushNamed(context, '/about');
               },
-              child: const Text("About Us"),
+              child: Text(S.of(context)?.about ?? 'About Us'),
             ),
+            ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/settings'),
+                  child: Text(S.of(context)!.settings),
+                ),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'l10n/s.dart';
 
 class ProgressPage extends StatelessWidget {
   const ProgressPage({super.key});
@@ -7,13 +8,13 @@ class ProgressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Progress Tracker"),
-        backgroundColor: Colors.green.shade600,
+        title: Text(S.of(context)?.progress ?? 'Progress Tracker'),
       ),
       body: Center(
         child: Text(
-          "Track your workout progress here!",
-          style: TextStyle(fontSize: 20),
+          S.of(context)?.trackProgress ??
+              'Track your workout progress here!',
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );
