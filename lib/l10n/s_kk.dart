@@ -9,19 +9,19 @@ class SKk extends S {
   SKk([String locale = 'kk']) : super(locale);
 
   @override
-  String get appTitle => 'Workout Organiser';
+  String get appTitle => 'Жаттығу Жоспарлаушы';
 
   @override
   String get workouts => 'Жаттығулар';
 
   @override
-  String get progress => 'Даму';
+  String get progress => 'Прогресс';
 
   @override
   String get profile => 'Профиль';
 
   @override
-  String get about => 'Қосымша жайлы';
+  String get about => 'Қосымша туралы';
 
   @override
   String get settings => 'Баптаулар';
@@ -45,7 +45,7 @@ class SKk extends S {
   String get addWorkout => 'Жаттығу қосу';
 
   @override
-  String get editWorkout => 'Жаттығуды өзгерту';
+  String get editWorkout => 'Жаттығуды өңдеу';
 
   @override
   String get title => 'Атауы';
@@ -66,29 +66,50 @@ class SKk extends S {
   String get close => 'Жабу';
 
   @override
-  String get noWorkouts => 'Әзірге жаттығулар жоқ. Алғашқысын қосыңыз!';
+  String get noWorkouts => 'Жаттығулар жоқ. Біреуін қосыңыз!';
 
   @override
-  String get trackProgress => 'Жаттығу барысын дәл осында қадағалаңыз!';
+  String get trackProgress => 'Жаттығу прогрессін осында бақылаңыз!';
 
   @override
   String get yourProfile => 'Сіздің профиліңіз';
 
   @override
-  String get aboutTitle => 'Workout Organiser қосымшасы жайлы';
+  String get aboutTitle => 'Workout Organiser туралы';
 
   @override
-  String get aboutDescription => 'Workout Organiser – пайдаланушыларға фитнес мақсаттарына жетуге көмектесетін мобильді қосымша. Жеке жоспар құруға, прогресті бақылауға, мақсат қоюға және еске салғыштар алуға мүмкіндік береді.';
+  String get aboutDescription => 'Workout Organiser — бұл қолданушыларға фитнес-мақсаттарына жетуге көмектесетін мобильді қосымша. Ол өз жаттығу жоспарын құруға, прогресті бақылауға, мақсаттар қоюға және еске салғыштар алуға мүмкіндік береді.';
 
   @override
   String get credits => 'Авторлар';
 
   @override
-  String get aboutCredits => 'Дайындаған: Орунбек Азан, Жеткiзген Нұрғиса, Айболат Уржин. Astana IT University‑дегі «Кроссплатформалық әзірлеу» пәні аясында.\n\nЖетекші: доцент Абзал Қызырқанов';
+  String get aboutCredits => 'Орындағандар: Орунбек Азан, Жеткізген Нұрғиса, Айболат Уржин — Astana IT University-дегі “Кроссплатформалық әзірлеу” курсы аясында.\n\nЖетекші: ассистент Абзал Қызырканов';
 
   @override
   String get version => 'Нұсқа';
 
   @override
-  String get versionNumber => 'Нұсқа 1.6 – Assignment 6 үшін жаңартылды';
+  String get versionNumber => 'Нұсқа 1.6 – 6-тапсырма үшін жаңартылды';
+
+  @override
+  String get login => 'Кіру';
+
+  @override
+  String get register => 'Тіркелу';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Құпия сөз';
+
+  @override
+  String get needAccount => 'Аккаунт керек пе?';
+
+  @override
+  String get haveAccount => 'Аккаунтыңыз бар ма? Кіру';
+
+  @override
+  String get guestMode => 'Қонақ режимі';
 }

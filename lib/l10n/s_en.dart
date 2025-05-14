@@ -91,4 +91,25 @@ class SEn extends S {
 
   @override
   String get versionNumber => 'Version 1.6 – Updated for Assignment 6';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get needAccount => 'Need an account?';
+
+  @override
+  String get haveAccount => 'Have an account? Log in';
+
+  @override
+  String get guestMode => 'Guest Mode';
 }

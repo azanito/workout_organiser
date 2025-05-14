@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+// 🔥 Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+// 🌐 Services
+import 'services/auth_service.dart';
+
+// 🧠 State & UI
 import 'settings_model.dart';
 import 'settings_page.dart';
 import 'about_page.dart';
@@ -9,8 +17,13 @@ import 'workouts_page.dart';
 import 'progress_page.dart';
 import 'profile_page.dart';
 import 'l10n/s.dart';
+import 'screens/login_page.dart';
 
-/// ----------  LIGHT & DARK THEMES ----------
+
+
+import 'package:firebase_auth/firebase_auth.dart';
+
+/// ---------- LIGHT & DARK THEMES ----------
 final ThemeData kLightTheme = ThemeData(
   useMaterial3: false,
   brightness: Brightness.light,
@@ -24,20 +37,53 @@ final ThemeData kDarkTheme = ThemeData(
   primarySwatch: Colors.green,
 );
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => SettingsModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SettingsModel()),
+        StreamProvider<User?>(
+          create: (_) => AuthService().authStateChanges,
+          initialData: null,
+        ),
+      ],
       child: const WorkoutOrganiserApp(),
     ),
   );
 }
 
-class WorkoutOrganiserApp extends StatelessWidget {
-  const WorkoutOrganiserApp({Key? key}) : super(key: key);
+/// 🧠 Stateful версия для безопасного использования restoreFromCloud
+class WorkoutOrganiserApp extends StatefulWidget {
+  const WorkoutOrganiserApp({super.key});
+
+  @override
+  State<WorkoutOrganiserApp> createState() => _WorkoutOrganiserAppState();
+}
+
+class _WorkoutOrganiserAppState extends State<WorkoutOrganiserApp> {
+  bool _restored = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_restored) {
+      final user = context.read<User?>();
+      final settings = context.read<SettingsModel>();
+      if (user != null) {
+        settings.restoreFromCloud();
+      }
+      _restored = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User?>();
     final settings = context.watch<SettingsModel>();
 
     return MaterialApp(
@@ -57,11 +103,10 @@ class WorkoutOrganiserApp extends StatelessWidget {
         Locale('ru'),
         Locale('kk'),
       ],
-      initialRoute: '/',
+      home: user == null ? const LoginPage() : const MainNavigationScreen(),
       routes: {
-        '/':         (_) => const MainNavigationScreen(),
         '/settings': (_) => const SettingsPage(),
-        '/about':    (_) => const AboutPage(),
+        '/about': (_) => const AboutPage(),
       },
       debugShowCheckedModeBanner: false,
     );
@@ -69,7 +114,7 @@ class WorkoutOrganiserApp extends StatelessWidget {
 }
 
 class MainNavigationScreen extends StatefulWidget {
-  const MainNavigationScreen({Key? key}) : super(key: key);
+  const MainNavigationScreen({super.key});
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
@@ -77,23 +122,30 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selected = 0;
-  static const _pages = [
-    WorkoutsPage(),
-    ProgressPage(),
-    ProfilePage(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User?>();
+
+    final pages = [
+      const WorkoutsPage(),
+      const ProgressPage(),
+      if (user != null) const ProfilePage(),
+    ];
+
+    final labels = [
+      S.of(context)!.workouts,
+      S.of(context)!.progress,
+      if (user != null) S.of(context)!.profile,
+    ];
+
     return Scaffold(
-      /// ---------- Drawer ----------
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration:
-                  BoxDecoration(color: Theme.of(context).primaryColor),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
               child: Text(
                 S.of(context)!.appTitle,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
@@ -112,34 +164,34 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ],
         ),
       ),
-
-      /// ---------- AppBar (показывает бургер) ----------
       appBar: AppBar(
         title: Text(S.of(context)!.appTitle),
       ),
-
-      /// ---------- Main body ----------
-      body: _pages[_selected],
-
-      /// ---------- BottomNavigation ----------
+      body: pages[_selected],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selected,
+        currentIndex: _selected.clamp(0, pages.length - 1),
         onTap: (i) => setState(() => _selected = i),
         selectedItemColor: Colors.green,
         items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.fitness_center),
-            label: S.of(context)!.workouts,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.show_chart),
-            label: S.of(context)!.progress,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person),
-            label: S.of(context)!.profile,
-          ),
+          for (final l in labels)
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.circle),
+              label: l,
+            ),
         ],
+      ),
+    );
+  }
+}
+
+class GuestGate extends StatelessWidget {
+  const GuestGate({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('${S.of(context)!.profile} (Guest Mode)'),
       ),
     );
   }

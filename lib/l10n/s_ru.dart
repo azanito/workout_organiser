@@ -9,7 +9,7 @@ class SRu extends S {
   SRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appTitle => 'Workout Organiser';
+  String get appTitle => 'Тренировочный Планировщик';
 
   @override
   String get workouts => 'Тренировки';
@@ -66,10 +66,10 @@ class SRu extends S {
   String get close => 'Закрыть';
 
   @override
-  String get noWorkouts => 'Пока нет тренировок. Добавьте первую!';
+  String get noWorkouts => 'Пока нет тренировок. Добавьте одну!';
 
   @override
-  String get trackProgress => 'Отслеживайте прогресс своих тренировок!';
+  String get trackProgress => 'Отслеживайте прогресс ваших тренировок здесь!';
 
   @override
   String get yourProfile => 'Ваш профиль';
@@ -78,17 +78,38 @@ class SRu extends S {
   String get aboutTitle => 'О приложении Workout Organiser';
 
   @override
-  String get aboutDescription => 'Workout Organiser — мобильное приложение, которое помогает пользователям регулярно заниматься фитнесом. Позволяет создавать индивидуальные планы, отслеживать прогресс, ставить цели и получать напоминания.';
+  String get aboutDescription => 'Workout Organiser — это мобильное приложение, созданное для помощи пользователям в достижении фитнес-целей. Оно позволяет создавать свои планы, отслеживать прогресс, устанавливать цели и получать напоминания.';
 
   @override
   String get credits => 'Авторы';
 
   @override
-  String get aboutCredits => 'Разработано: Орунбек Азан, Жеткiзген Нургисса, Айболат Уржин в рамках курса «Кроссплатформенная разработка» в Astana IT University.\n\nНаставник: доц. Абзал Кызырканов';
+  String get aboutCredits => 'Разработано: Орунбек Азан, Жеткізген Нұрғиса, Айболат Уржин в рамках курса “Кроссплатформенная разработка” в Astana IT University.\n\nПреподаватель: ассистент Абзал Кызырканов';
 
   @override
   String get version => 'Версия';
 
   @override
-  String get versionNumber => 'Версия 1.6 – обновление для Assignment 6';
+  String get versionNumber => 'Версия 1.6 — Обновлено для Задания 6';
+
+  @override
+  String get login => 'Войти';
+
+  @override
+  String get register => 'Регистрация';
+
+  @override
+  String get email => 'Почта';
+
+  @override
+  String get password => 'Пароль';
+
+  @override
+  String get needAccount => 'Нужен аккаунт?';
+
+  @override
+  String get haveAccount => 'Уже есть аккаунт? Войти';
+
+  @override
+  String get guestMode => 'Гостевой режим';
 }

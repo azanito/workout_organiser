@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'services/preferences_service.dart'; // top of file
+
 
 class SettingsModel extends ChangeNotifier {
   /// по умолчанию – "как в системе"
@@ -19,4 +21,10 @@ class SettingsModel extends ChangeNotifier {
     _locale = locale;
     notifyListeners();
   }
+
+  final _prefs = PreferencesService();
+
+  void saveToCloud() => _prefs.save(this);
+  void restoreFromCloud() => _prefs.loadInto(this);
+  
 }
