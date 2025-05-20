@@ -112,4 +112,22 @@ class SEn extends S {
 
   @override
   String get guestMode => 'Guest Mode';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get passwordRequired => 'Password is required';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get settingsSaved => 'Settings saved successfully';
+
+  @override
+  String get settingsSaveError => 'Failed to save settings';
+
+  @override
+  String get saveSettings => 'Save Settings';
 }

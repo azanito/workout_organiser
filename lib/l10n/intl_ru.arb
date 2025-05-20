@@ -40,5 +40,15 @@
   "password": "Пароль",
   "needAccount": "Нужен аккаунт?",
   "haveAccount": "Уже есть аккаунт? Войти",
-  "guestMode": "Гостевой режим"
+  "guestMode": "Гостевой режим",
+
+  "emailRequired": "Требуется email",
+  "passwordRequired": "Требуется пароль",
+  "login": "Войти",
+  "register": "Зарегистрироваться",
+  "logout": "Выйти",
+  "guestMode": "Гостевой режим",
+  "settingsSaved": "Настройки успешно сохранены",
+  "settingsSaveError": "Ошибка сохранения настроек",
+  "saveSettings": "Сохранить настройки"
 }

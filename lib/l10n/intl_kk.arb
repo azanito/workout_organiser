@@ -40,5 +40,15 @@
   "password": "Құпия сөз",
   "needAccount": "Аккаунт керек пе?",
   "haveAccount": "Аккаунтыңыз бар ма? Кіру",
-  "guestMode": "Қонақ режимі"
+  "guestMode": "Қонақ режимі",
+
+  "emailRequired": "Электрондық пошта қажет",
+  "passwordRequired": "Құпия сөз қажет",
+  "login": "Кіру",
+  "register": "Тіркелу",
+  "logout": "Шығу",
+  "guestMode": "Қонақ режимі",
+  "settingsSaved": "Параметрлер сәтті сақталды",
+  "settingsSaveError": "Параметрлерді сақтау кезінде қате орын алды",
+  "saveSettings": "Параметрлерді сақтау"
 }

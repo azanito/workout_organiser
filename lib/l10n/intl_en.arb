@@ -40,5 +40,15 @@
   "password": "Password",
   "needAccount": "Need an account?",
   "haveAccount": "Have an account? Log in",
-  "guestMode": "Guest Mode"
+  "guestMode": "Guest Mode",
+  
+  "emailRequired": "Email is required",
+  "passwordRequired": "Password is required",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "guestMode": "Guest Mode",
+  "settingsSaved": "Settings saved successfully",
+  "settingsSaveError": "Failed to save settings",
+  "saveSettings": "Save Settings"
 }

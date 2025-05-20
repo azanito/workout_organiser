@@ -19,8 +19,6 @@ import 'profile_page.dart';
 import 'l10n/s.dart';
 import 'screens/login_page.dart';
 
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 /// ---------- LIGHT & DARK THEMES ----------
@@ -47,9 +45,11 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingsModel()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
         StreamProvider<User?>(
-          create: (_) => AuthService().authStateChanges,
+          create: (context) => context.read<AuthService>().authStateChanges,
           initialData: null,
+          catchError: (_, __) => null,
         ),
       ],
       child: const WorkoutOrganiserApp(),

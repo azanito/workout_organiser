@@ -96,7 +96,7 @@ class SRu extends S {
   String get login => 'Войти';
 
   @override
-  String get register => 'Регистрация';
+  String get register => 'Зарегистрироваться';
 
   @override
   String get email => 'Почта';
@@ -112,4 +112,22 @@ class SRu extends S {
 
   @override
   String get guestMode => 'Гостевой режим';
+
+  @override
+  String get emailRequired => 'Требуется email';
+
+  @override
+  String get passwordRequired => 'Требуется пароль';
+
+  @override
+  String get logout => 'Выйти';
+
+  @override
+  String get settingsSaved => 'Настройки успешно сохранены';
+
+  @override
+  String get settingsSaveError => 'Ошибка сохранения настроек';
+
+  @override
+  String get saveSettings => 'Сохранить настройки';
 }

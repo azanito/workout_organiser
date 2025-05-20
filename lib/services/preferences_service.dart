@@ -10,8 +10,8 @@ class PreferencesService {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) return;
     await _db.collection('users').doc(uid).set({
-      'theme': sm.themeMode.name,         // system/light/dark
-      'language': sm.locale?.languageCode // en/ru/kk/null
+      'theme': sm.themeMode.name,
+      'language': sm.locale?.languageCode,
     }, SetOptions(merge: true));
   }
 

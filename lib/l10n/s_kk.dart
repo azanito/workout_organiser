@@ -112,4 +112,22 @@ class SKk extends S {
 
   @override
   String get guestMode => 'Қонақ режимі';
+
+  @override
+  String get emailRequired => 'Электрондық пошта қажет';
+
+  @override
+  String get passwordRequired => 'Құпия сөз қажет';
+
+  @override
+  String get logout => 'Шығу';
+
+  @override
+  String get settingsSaved => 'Параметрлер сәтті сақталды';
+
+  @override
+  String get settingsSaveError => 'Параметрлерді сақтау кезінде қате орын алды';
+
+  @override
+  String get saveSettings => 'Параметрлерді сақтау';
 }
