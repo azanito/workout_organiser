@@ -166,4 +166,7 @@ class SRu extends S {
 
   @override
   String get loadingMessage => 'Загрузка...';
+
+  @override
+  String get loadingWorkouts => 'Загрузка тренировок...';
 }

@@ -166,4 +166,7 @@ class SKk extends S {
 
   @override
   String get loadingMessage => 'Жүктелуде...';
+
+  @override
+  String get loadingWorkouts => 'Жаттығулар жүктелуде...';
 }

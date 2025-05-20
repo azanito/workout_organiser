@@ -63,5 +63,6 @@
   "logoutConfirmation": "Шығуды растаңыз",
   "emptyFieldsError": "Барлық өрістерді толтырыңыз",
   "invalidCredentials": "Қате электрондық пошта немесе құпия сөз",
-  "loadingMessage": "Жүктелуде..."
+  "loadingMessage": "Жүктелуде...",
+  "loadingWorkouts": "Жаттығулар жүктелуде..."
 }

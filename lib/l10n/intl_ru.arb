@@ -63,5 +63,6 @@
   "logoutConfirmation": "Подтвердите выход",
   "emptyFieldsError": "Пожалуйста, заполните все поля",
   "invalidCredentials": "Неверный email или пароль",
-  "loadingMessage": "Загрузка..."
+  "loadingMessage": "Загрузка...",
+  "loadingWorkouts": "Загрузка тренировок..."
 }

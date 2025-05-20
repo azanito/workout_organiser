@@ -414,6 +414,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Loading...'**
   String get loadingMessage;
+
+  /// No description provided for @loadingWorkouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading workouts...'**
+  String get loadingWorkouts;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

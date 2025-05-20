@@ -63,5 +63,6 @@
   "logoutConfirmation": "Confirm logout",
   "emptyFieldsError": "Please fill in all fields",
   "invalidCredentials": "Invalid email or password",
-  "loadingMessage": "Loading..."
+  "loadingMessage": "Loading...",
+  "loadingWorkouts": "Loading workouts..."
 }

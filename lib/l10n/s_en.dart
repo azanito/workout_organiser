@@ -166,4 +166,7 @@ class SEn extends S {
 
   @override
   String get loadingMessage => 'Loading...';
+
+  @override
+  String get loadingWorkouts => 'Loading workouts...';
 }
