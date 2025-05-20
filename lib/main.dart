@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
-// 🔥 Firebase
+// Firebase
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-// 🌐 Services
+// Services
 import 'services/auth_service.dart';
 
-// 🧠 State & UI
+// State & UI
 import 'settings_model.dart';
 import 'settings_page.dart';
 import 'about_page.dart';
@@ -18,8 +21,6 @@ import 'progress_page.dart';
 import 'profile_page.dart';
 import 'l10n/s.dart';
 import 'screens/login_page.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 
 /// ---------- LIGHT & DARK THEMES ----------
 final ThemeData kLightTheme = ThemeData(
@@ -37,9 +38,15 @@ final ThemeData kDarkTheme = ThemeData(
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
+  // Initialize Hive for local storage
+  await Hive.initFlutter();
+  await Hive.openBox('appBox');
 
   runApp(
     MultiProvider(
@@ -51,13 +58,16 @@ Future<void> main() async {
           initialData: null,
           catchError: (_, __) => null,
         ),
+        StreamProvider<ConnectivityResult>(
+          create: (_) => Connectivity().onConnectivityChanged,
+          initialData: ConnectivityResult.none,
+        ),
       ],
       child: const WorkoutOrganiserApp(),
     ),
   );
 }
 
-/// 🧠 Stateful версия для безопасного использования restoreFromCloud
 class WorkoutOrganiserApp extends StatefulWidget {
   const WorkoutOrganiserApp({super.key});
 
@@ -67,6 +77,26 @@ class WorkoutOrganiserApp extends StatefulWidget {
 
 class _WorkoutOrganiserAppState extends State<WorkoutOrganiserApp> {
   bool _restored = false;
+  bool _syncing = false;
+
+  Future<void> _syncData(BuildContext context) async {
+    if (!mounted) return;
+    
+    final authService = context.read<AuthService>();
+    final settings = context.read<SettingsModel>();
+    
+    setState(() => _syncing = true);
+    try {
+      if (authService.currentUser != null) {
+        settings.restoreFromCloud();
+        await authService.syncLocalDataToFirebase();
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _syncing = false);
+      }
+    }
+  }
 
   @override
   void didChangeDependencies() {
@@ -85,6 +115,17 @@ class _WorkoutOrganiserAppState extends State<WorkoutOrganiserApp> {
   Widget build(BuildContext context) {
     final user = context.watch<User?>();
     final settings = context.watch<SettingsModel>();
+    final connectivity = context.watch<ConnectivityResult>();
+    final isOnline = connectivity != ConnectivityResult.none;
+
+    // Auto-sync when coming back online
+    if (isOnline && user != null && !_syncing) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _syncData(context);
+        }
+      });
+    }
 
     return MaterialApp(
       title: 'Workout Organiser',
@@ -122,13 +163,40 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selected = 0;
+  bool _syncing = false;
+
+  Future<void> _manualSync(BuildContext context) async {
+    if (!mounted) return;
+    
+    setState(() => _syncing = true);
+    try {
+      final authService = context.read<AuthService>();
+      final settings = context.read<SettingsModel>();
+      
+      if (authService.currentUser != null) {
+        settings.restoreFromCloud();
+        await authService.syncLocalDataToFirebase();
+      }
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Sync completed')), // Temporary solution
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _syncing = false);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = context.watch<User?>();
+    final isOnline = context.watch<ConnectivityResult>() != ConnectivityResult.none;
 
     final pages = [
-      const WorkoutsPage(),
+      WorkoutsPage(isOnline: isOnline),
       const ProgressPage(),
       if (user != null) const ProfilePage(),
     ];
@@ -166,6 +234,20 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       appBar: AppBar(
         title: Text(S.of(context)!.appTitle),
+        actions: [
+          if (!isOnline)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.cloud_off, color: Colors.red),
+            ),
+          IconButton(
+            icon: _syncing
+                ? const CircularProgressIndicator(color: Colors.white)
+                : const Icon(Icons.sync),
+            onPressed: isOnline && !_syncing ? () => _manualSync(context) : null,
+            tooltip: isOnline ? 'Sync data' : 'Offline mode', // Temporary solution
+          ),
+        ],
       ),
       body: pages[_selected],
       bottomNavigationBar: BottomNavigationBar(
@@ -179,19 +261,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               label: l,
             ),
         ],
-      ),
-    );
-  }
-}
-
-class GuestGate extends StatelessWidget {
-  const GuestGate({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('${S.of(context)!.profile} (Guest Mode)'),
       ),
     );
   }

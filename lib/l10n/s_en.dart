@@ -130,4 +130,40 @@ class SEn extends S {
 
   @override
   String get saveSettings => 'Save Settings';
+
+  @override
+  String get offlineIndicator => 'No Connection (Offline Mode)';
+
+  @override
+  String get syncButton => 'Sync';
+
+  @override
+  String get syncInProgress => 'Sync in progress...';
+
+  @override
+  String get syncCompleted => 'Sync completed';
+
+  @override
+  String get syncFailed => 'Sync failed';
+
+  @override
+  String get offlineModeWarning => 'Some features available online only';
+
+  @override
+  String get loginPrompt => 'Please log in';
+
+  @override
+  String get persistentLoginActive => 'Your session is active';
+
+  @override
+  String get logoutConfirmation => 'Confirm logout';
+
+  @override
+  String get emptyFieldsError => 'Please fill in all fields';
+
+  @override
+  String get invalidCredentials => 'Invalid email or password';
+
+  @override
+  String get loadingMessage => 'Loading...';
 }

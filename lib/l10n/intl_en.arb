@@ -50,5 +50,18 @@
   "guestMode": "Guest Mode",
   "settingsSaved": "Settings saved successfully",
   "settingsSaveError": "Failed to save settings",
-  "saveSettings": "Save Settings"
+  "saveSettings": "Save Settings",
+
+  "offlineIndicator": "No Connection (Offline Mode)",
+  "syncButton": "Sync",
+  "syncInProgress": "Sync in progress...",
+  "syncCompleted": "Sync completed",
+  "syncFailed": "Sync failed",
+  "offlineModeWarning": "Some features available online only",
+  "loginPrompt": "Please log in",
+  "persistentLoginActive": "Your session is active",
+  "logoutConfirmation": "Confirm logout",
+  "emptyFieldsError": "Please fill in all fields",
+  "invalidCredentials": "Invalid email or password",
+  "loadingMessage": "Loading..."
 }

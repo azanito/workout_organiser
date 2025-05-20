@@ -50,5 +50,18 @@
   "guestMode": "Гостевой режим",
   "settingsSaved": "Настройки успешно сохранены",
   "settingsSaveError": "Ошибка сохранения настроек",
-  "saveSettings": "Сохранить настройки"
+  "saveSettings": "Сохранить настройки",
+
+  "offlineIndicator": "Нет соединения (офлайн режим)",
+  "syncButton": "Синхронизация",
+  "syncInProgress": "Идёт синхронизация...",
+  "syncCompleted": "Синхронизация завершена",
+  "syncFailed": "Ошибка синхронизации",
+  "offlineModeWarning": "Некоторые функции доступны только онлайн",
+  "loginPrompt": "Пожалуйста, войдите в систему",
+  "persistentLoginActive": "Ваша сессия активна",
+  "logoutConfirmation": "Подтвердите выход",
+  "emptyFieldsError": "Пожалуйста, заполните все поля",
+  "invalidCredentials": "Неверный email или пароль",
+  "loadingMessage": "Загрузка..."
 }

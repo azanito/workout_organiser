@@ -130,4 +130,40 @@ class SRu extends S {
 
   @override
   String get saveSettings => 'Сохранить настройки';
+
+  @override
+  String get offlineIndicator => 'Нет соединения (офлайн режим)';
+
+  @override
+  String get syncButton => 'Синхронизация';
+
+  @override
+  String get syncInProgress => 'Идёт синхронизация...';
+
+  @override
+  String get syncCompleted => 'Синхронизация завершена';
+
+  @override
+  String get syncFailed => 'Ошибка синхронизации';
+
+  @override
+  String get offlineModeWarning => 'Некоторые функции доступны только онлайн';
+
+  @override
+  String get loginPrompt => 'Пожалуйста, войдите в систему';
+
+  @override
+  String get persistentLoginActive => 'Ваша сессия активна';
+
+  @override
+  String get logoutConfirmation => 'Подтвердите выход';
+
+  @override
+  String get emptyFieldsError => 'Пожалуйста, заполните все поля';
+
+  @override
+  String get invalidCredentials => 'Неверный email или пароль';
+
+  @override
+  String get loadingMessage => 'Загрузка...';
 }

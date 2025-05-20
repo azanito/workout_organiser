@@ -130,4 +130,40 @@ class SKk extends S {
 
   @override
   String get saveSettings => 'Параметрлерді сақтау';
+
+  @override
+  String get offlineIndicator => 'Қосылым жоқ (офлайн режим)';
+
+  @override
+  String get syncButton => 'Синхрондау';
+
+  @override
+  String get syncInProgress => 'Синхрондау жүріп жатыр...';
+
+  @override
+  String get syncCompleted => 'Синхрондау аяқталды';
+
+  @override
+  String get syncFailed => 'Синхрондау сәтсіз аяқталды';
+
+  @override
+  String get offlineModeWarning => 'Кейбір функциялар тек онлайн режимде қолжетімді';
+
+  @override
+  String get loginPrompt => 'Қолданушы ретінде кіріңіз';
+
+  @override
+  String get persistentLoginActive => 'Сіздің сессияңыз белсенді';
+
+  @override
+  String get logoutConfirmation => 'Шығуды растаңыз';
+
+  @override
+  String get emptyFieldsError => 'Барлық өрістерді толтырыңыз';
+
+  @override
+  String get invalidCredentials => 'Қате электрондық пошта немесе құпия сөз';
+
+  @override
+  String get loadingMessage => 'Жүктелуде...';
 }

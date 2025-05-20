@@ -342,6 +342,78 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Save Settings'**
   String get saveSettings;
+
+  /// No description provided for @offlineIndicator.
+  ///
+  /// In en, this message translates to:
+  /// **'No Connection (Offline Mode)'**
+  String get offlineIndicator;
+
+  /// No description provided for @syncButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync'**
+  String get syncButton;
+
+  /// No description provided for @syncInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync in progress...'**
+  String get syncInProgress;
+
+  /// No description provided for @syncCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync completed'**
+  String get syncCompleted;
+
+  /// No description provided for @syncFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync failed'**
+  String get syncFailed;
+
+  /// No description provided for @offlineModeWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Some features available online only'**
+  String get offlineModeWarning;
+
+  /// No description provided for @loginPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please log in'**
+  String get loginPrompt;
+
+  /// No description provided for @persistentLoginActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session is active'**
+  String get persistentLoginActive;
+
+  /// No description provided for @logoutConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm logout'**
+  String get logoutConfirmation;
+
+  /// No description provided for @emptyFieldsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all fields'**
+  String get emptyFieldsError;
+
+  /// No description provided for @invalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email or password'**
+  String get invalidCredentials;
+
+  /// No description provided for @loadingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loadingMessage;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

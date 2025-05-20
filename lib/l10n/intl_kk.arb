@@ -50,5 +50,18 @@
   "guestMode": "Қонақ режимі",
   "settingsSaved": "Параметрлер сәтті сақталды",
   "settingsSaveError": "Параметрлерді сақтау кезінде қате орын алды",
-  "saveSettings": "Параметрлерді сақтау"
+  "saveSettings": "Параметрлерді сақтау",
+
+  "offlineIndicator": "Қосылым жоқ (офлайн режим)",
+  "syncButton": "Синхрондау",
+  "syncInProgress": "Синхрондау жүріп жатыр...",
+  "syncCompleted": "Синхрондау аяқталды",
+  "syncFailed": "Синхрондау сәтсіз аяқталды",
+  "offlineModeWarning": "Кейбір функциялар тек онлайн режимде қолжетімді",
+  "loginPrompt": "Қолданушы ретінде кіріңіз",
+  "persistentLoginActive": "Сіздің сессияңыз белсенді",
+  "logoutConfirmation": "Шығуды растаңыз",
+  "emptyFieldsError": "Барлық өрістерді толтырыңыз",
+  "invalidCredentials": "Қате электрондық пошта немесе құпия сөз",
+  "loadingMessage": "Жүктелуде..."
 }
