@@ -64,5 +64,10 @@
   "emptyFieldsError": "Please fill in all fields",
   "invalidCredentials": "Invalid email or password",
   "loadingMessage": "Loading...",
-  "loadingWorkouts": "Loading workouts..."
+  "loadingWorkouts": "Loading workouts...",
+
+  "continueGuest": "Continue as Guest",
+  "guestMessage": "You are in Guest mode. Sign in to unlock the full app 🎉",
+  "signInRegister": "Sign in / Register"
+
 }

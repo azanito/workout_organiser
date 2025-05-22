@@ -47,6 +47,16 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Future<void> _continueAsGuest(AuthService authService) async {
+    try {
+      await authService.signInAnonymously(context);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Guest sign-in failed: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
@@ -105,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 24),
 
-                // Кнопка или индикатор загрузки
+                // Кнопка входа/регистрации
                 authService.isLoading
                     ? const CircularProgressIndicator()
                     : SizedBox(
@@ -116,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
 
+                // Переключатель между login/register
                 TextButton(
                   onPressed: () {
                     setState(() {
@@ -128,6 +139,17 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(_isLogin
                       ? 'Don\'t have an account? Register'
                       : 'Already have an account? Login'),
+                ),
+
+                const Divider(height: 32),
+
+                // Кнопка гостевого входа
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.person_outline),
+                  label: const Text('Continue as Guest'),
+                  onPressed: authService.isLoading
+                      ? null
+                      : () => _continueAsGuest(authService),
                 ),
               ],
             ),

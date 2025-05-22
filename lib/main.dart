@@ -6,6 +6,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 // Firebase
 import 'package:firebase_core/firebase_core.dart';
+import 'package:workout_organiser/screens/guest_gate.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -144,7 +145,10 @@ class _WorkoutOrganiserAppState extends State<WorkoutOrganiserApp> {
         Locale('ru'),
         Locale('kk'),
       ],
-      home: user == null ? const LoginPage() : const MainNavigationScreen(),
+      home: user == null
+    ? const LoginPage()
+    : (user.isAnonymous ? const GuestGate() : const MainNavigationScreen()),
+
       routes: {
         '/settings': (_) => const SettingsPage(),
         '/about': (_) => const AboutPage(),

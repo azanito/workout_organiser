@@ -159,4 +159,22 @@ class AuthService extends ChangeNotifier {
   Future<bool> checkCurrentSession() async {
     return await isUserLoggedIn();
   }
+
+  Future<User?> signInAnonymously(BuildContext context) async {
+  _setLoading(true);
+  try {
+    final result = await _auth.signInAnonymously();
+    await init();
+    await _box?.put('user_uid', result.user?.uid);
+    return result.user;
+  } on FirebaseAuthException catch (e) {
+    _showError(context, e.message ?? 'Guest login failed');
+    return null;
+  } finally {
+    _setLoading(false);
+    notifyListeners();
+  }
+}
+
+  
 }
