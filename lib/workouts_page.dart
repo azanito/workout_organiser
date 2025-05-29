@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'services/workout_service.dart';  // импорт сервиса Firebase
 
 class WorkoutsPage extends StatefulWidget {
   final bool isOnline;
@@ -51,6 +52,8 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
   final _descCtrl = TextEditingController();
   bool _isLoading = false;
 
+  final WorkoutService _workoutService = WorkoutService();
+
   @override
   void initState() {
     super.initState();
@@ -61,26 +64,23 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
     setState(() => _isLoading = true);
     try {
       if (widget.isOnline) {
-        // Try to load from Firebase first
-        final onlineData = await _loadFromFirebase();
-        setState(() => _workouts.addAll(onlineData));
+        // Загрузка из Firebase
+        final onlineData = await _workoutService.loadWorkouts();
+        setState(() => _workouts
+          ..clear()
+          ..addAll(onlineData));
         await _saveToLocal(onlineData);
       } else {
-        // Load from local storage
         final localData = await _loadFromLocal();
-        setState(() => _workouts.addAll(localData));
+        setState(() => _workouts
+          ..clear()
+          ..addAll(localData));
       }
     } catch (e) {
       debugPrint('Error loading data: $e');
     } finally {
       setState(() => _isLoading = false);
     }
-  }
-
-  Future<List<Workout>> _loadFromFirebase() async {
-    // Implement your Firebase loading logic here
-    // This is just a placeholder
-    return [];
   }
 
   Future<List<Workout>> _loadFromLocal() async {
@@ -102,7 +102,11 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
       await _saveToLocal([workout]);
       return;
     }
-    // Implement your Firebase save logic here
+    if (_workouts.any((w) => w.id == workout.id)) {
+      await _workoutService.updateWorkout(workout);
+    } else {
+      await _workoutService.addWorkout(workout);
+    }
   }
 
   void _showDialog({bool edit = false, Workout? workout}) {
@@ -169,7 +173,6 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
         await _saveToFirebase(newWorkout);
         setState(() => _workouts.add(newWorkout));
       }
-
       Navigator.pop(context);
     } catch (e) {
       debugPrint('Error saving workout: $e');
@@ -188,13 +191,10 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
     setState(() => _isLoading = true);
     try {
       if (widget.isOnline) {
-        // Implement Firebase delete
+        await _workoutService.deleteWorkout(workout.id);
       }
-
-      // Always remove from local storage
       final box = await Hive.openBox('workouts');
       await box.delete(workout.id);
-
       if (mounted) {
         setState(() => _workouts.removeAt(index));
       }

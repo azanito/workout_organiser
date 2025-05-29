@@ -169,4 +169,13 @@ class SKk extends S {
 
   @override
   String get loadingWorkouts => 'Жаттығулар жүктелуде...';
+
+  @override
+  String get continueGuest => 'Қонақ ретінде жалғастыру';
+
+  @override
+  String get guestMessage => 'Сіз қонақ ретінде кірдіңіз. Қосымша мүмкіндіктер үшін тіркеліңіз 🎉';
+
+  @override
+  String get signInRegister => 'Кіру / Тіркелу';
 }

@@ -169,4 +169,13 @@ class SEn extends S {
 
   @override
   String get loadingWorkouts => 'Loading workouts...';
+
+  @override
+  String get continueGuest => 'Continue as Guest';
+
+  @override
+  String get guestMessage => 'You are in Guest mode. Sign in to unlock the full app 🎉';
+
+  @override
+  String get signInRegister => 'Sign in / Register';
 }

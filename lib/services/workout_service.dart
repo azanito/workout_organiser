@@ -29,4 +29,6 @@ class WorkoutService {
       },
     );
   }
+
+  loadWorkouts() {}
 }

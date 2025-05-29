@@ -420,6 +420,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Loading workouts...'**
   String get loadingWorkouts;
+
+  /// No description provided for @continueGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as Guest'**
+  String get continueGuest;
+
+  /// No description provided for @guestMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You are in Guest mode. Sign in to unlock the full app 🎉'**
+  String get guestMessage;
+
+  /// No description provided for @signInRegister.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in / Register'**
+  String get signInRegister;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

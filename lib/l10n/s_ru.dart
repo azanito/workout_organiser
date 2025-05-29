@@ -169,4 +169,13 @@ class SRu extends S {
 
   @override
   String get loadingWorkouts => 'Загрузка тренировок...';
+
+  @override
+  String get continueGuest => 'Продолжить как гость';
+
+  @override
+  String get guestMessage => 'Вы вошли как гость. Войдите в аккаунт, чтобы получить полный доступ 🎉';
+
+  @override
+  String get signInRegister => 'Войти / Зарегистрироваться';
 }

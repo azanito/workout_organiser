@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.azan.workout_organiser"
+    namespace = "com.azan.workoutorganiser"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.azan.workout_organiser"
+        applicationId = "com.azan.workoutorganiser"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
